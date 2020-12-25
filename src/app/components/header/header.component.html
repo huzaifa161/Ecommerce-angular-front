@@ -8,8 +8,9 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li *ngIf="!isAuthenticated"><a routerLink="/login" routerLinkActive="active"><i class="fa fa-user-o"></i> Sign In</a></li>
+                <li *ngIf="!isAuthenticated"><a routerLink="/sign-up" routerLinkActive="active"><i class="fa fa-user-o"></i> Sign Up</a></li>
+                <li *ngIf="isAuthenticated"><a href="#"><i class="fa fa-sign-out" (click)="logoutUser()"></i>Logout</a></li>
             </ul>
         </div>
     </div>
@@ -71,7 +72,7 @@
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="./assets/img/product01.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -82,7 +83,7 @@
 
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
+                                            <img src="./assets/img/product02.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>

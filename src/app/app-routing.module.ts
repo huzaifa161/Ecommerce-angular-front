@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CartComponent } from './components/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,7 +16,7 @@ const routes: Routes = [{
   path: 'login', component: LoginComponent
 },
 {
-  path: 'register', component: SignupComponent
+  path: 'sign-up', component: SignupComponent
 },
 {
   path: 'product/:id', component: ProductComponent
@@ -25,6 +27,10 @@ const routes: Routes = [{
 
 {
   path: 'thankyou', component: ThankyouComponent
+},{
+  path:'forget-password',component:ForgetPasswordComponent
+},{
+  path:'password-reset/:token', component:ResetPasswordComponent
 }];
 
 @NgModule({

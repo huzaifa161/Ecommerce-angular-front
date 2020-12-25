@@ -7,12 +7,16 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { ProductComponent } from './components/product/product.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { CommonModule } from '@angular/common';
+import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +28,22 @@ import { ProductComponent } from './components/product/product.component';
     HomeComponent,
     CartComponent,
     ThankyouComponent,
-    ProductComponent
+    ProductComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
