@@ -28,10 +28,13 @@ export class ResetPasswordComponent implements OnInit {
     })
   }
 
-  onSubmit(form:NgForm){
+  onSubmit(form:NgForm):void{
     if(!form.valid){ return;}
     const { password, confirmPassword } = form.value;
-    if(password !== confirmPassword) return this.errorMessage = 'Password does not Match';
+    if(password !== confirmPassword) {
+     this.errorMessage = 'Password does not Match';
+      return;
+}
 
     const token = this.route.snapshot.paramMap.get('token');
     this.authService.resetPassword(token, password, confirmPassword).subscribe(res => {

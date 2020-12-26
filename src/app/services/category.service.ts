@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 
@@ -12,6 +12,12 @@ export class CategoryService{
 
     }
     getCategories(){
-        return this.http.get(this.serverUrl + 'category');
+        return this.http.get<[]>(this.serverUrl + 'category');
+    }
+
+    addCategory(formData){
+        return this.http.post(this.serverUrl + 'admin/add-new-category',formData,{
+           headers: new HttpHeaders().set('Authorization','Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluMTIzQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNjA4OTg2MTk1LCJleHAiOjE2MDkwNDYxOTV9.yUExMFHsg83c8dNXKGjTgWA6i6UpwxyIcRIEIpzCogc') 
+        });
     }
 }

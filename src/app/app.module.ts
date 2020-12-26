@@ -19,6 +19,8 @@ import { ForgetPasswordComponent } from './auth/forget-password/forget-password.
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AddCategoryComponent } from './admin/add-category/add-category.componen
     ForgetPasswordComponent,
     ResetPasswordComponent,
     AddProductComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AdminHomeComponent,
+    AdminHeaderComponent
   ],
   imports: [
     CommonModule,

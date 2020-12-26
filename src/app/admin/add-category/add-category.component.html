@@ -1,1 +1,31 @@
-<p>add-category works!</p>
+<div class="form-wrapper">
+    <form class="form-med" enctype="multipart/form-data" #form='ngForm' (ngSubmit)="onSubmit(form)">
+     
+      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+      <h2 class="form-heading">Add Category</h2>
+      
+    
+      <div class="form-group">
+        <label for="productName">Category Name</label>
+        <input type="text" class="form-control" id="categoryName" name="categoryName" ngModel required placeholder="Category Name">
+      </div>
+      <div class="form-group">
+        <label for="productDesc">Category Description</label>
+        <textarea class="form-control" id="categoryDesc" placeholder="Category Description" name="categoryDesc" ngModel></textarea>
+      </div>
+      <div class="form-group">
+        <label for="category">Parent Category</label>
+        <select id="parent" name="parent" ngModel required class="form-control">
+          <option selected value="null">Parent</option>
+          <option *ngFor="let cat of categories" value={{cat.id}}>{{cat.categoryName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="image_1">Image</label>
+        <input type="file" class="form-control" id="image" name="image" (change)="onFileSelect($event)" required ngModel />
+      </div>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Add Category</button>
+    </form>
+    
+    </div>
