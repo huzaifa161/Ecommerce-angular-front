@@ -17,6 +17,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CommonModule } from '@angular/common';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
     ThankyouComponent,
     ProductComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AddProductComponent,
+    AddCategoryComponent
   ],
   imports: [
     CommonModule,

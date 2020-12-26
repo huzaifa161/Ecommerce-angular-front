@@ -29,7 +29,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    if(!form.valid) return;
+    if(!form.valid){ return;}
     const { password, confirmPassword } = form.value;
     if(password !== confirmPassword) return this.errorMessage = 'Password does not Match';
 
