@@ -13,7 +13,7 @@ export class AddProductComponent implements OnInit {
   image_1:File;
   image_2:File;
   image_3:File;
-  categories:[] = [];
+  categories = [];
   successMessage:string;
   errorMessage:string;
   constructor(private categoryService:CategoryService, private productService:ProductService) { }

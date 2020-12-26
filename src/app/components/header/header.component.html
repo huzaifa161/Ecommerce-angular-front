@@ -4,12 +4,13 @@
         <div class="container">
             <ul class="header-links pull-left">
                 <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+                <li *ngIf="isAuthenticated"><a href="#"><i class="fa fa-envelope-o"></i>{{user.email}}</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
             </ul>
             <ul class="header-links pull-right">
                 <li *ngIf="!isAuthenticated"><a routerLink="/login" routerLinkActive="active"><i class="fa fa-user-o"></i> Sign In</a></li>
                 <li *ngIf="!isAuthenticated"><a routerLink="/sign-up" routerLinkActive="active"><i class="fa fa-user-o"></i> Sign Up</a></li>
+                <li *ngIf="isAuthenticated"><a routerLink="/orders" routerLinkActive="active"><i class="fa fa-user-o"></i> Orders</a></li>
                 <li *ngIf="isAuthenticated"><a href="#"><i class="fa fa-sign-out" (click)="logoutUser()"></i>Logout</a></li>
             </ul>
         </div>
@@ -133,8 +134,8 @@
             <!-- NAV -->
             <ul class="main-nav nav py-3">
                 <li class="active"><a href="#">Home</a></li>
-                <li *ngFor="let cat of categories"><a routerLink="categories/{{cat.id}}">{{cat.category_name}}
-                    <li *ngFor="let c of cat.children"><a routerLink="categories/{{c.id}}">{{c.category_name}}
+                <li *ngFor="let cat of categories"><a routerLink="categories/{{cat.id}}">{{cat.categoryName}}
+                    <li *ngFor="let c of cat.children"><a routerLink="categories/{{c.id}}">{{c.categoryName}}
                     </a>
                 </li>                     
                 </a>

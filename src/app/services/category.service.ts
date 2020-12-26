@@ -14,6 +14,9 @@ export class CategoryService{
     getCategories(){
         return this.http.get<[]>(this.serverUrl + 'category');
     }
+    getCategoriesAndSub(){
+        return this.http.get<[]>(this.serverUrl + 'category/sub');
+    }
 
     addCategory(formData){
         return this.http.post(this.serverUrl + 'admin/add-new-category',formData,{

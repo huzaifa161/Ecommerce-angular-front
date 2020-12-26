@@ -1,0 +1,20 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Product Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of products">
+        <th scope="row">{{prod.id}}</th>
+        <td><img class="img-fluid" src="{{imageUrl}}/{{prod.image_1}}" alt=""></td>
+        <td>{{prod.productName}}</td>
+        <td>{{prod.quantity}}</td>
+        <td>{{prod.price}}</td>
+      </tr>
+    </tbody>
+  </table>

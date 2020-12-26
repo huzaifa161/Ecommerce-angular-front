@@ -13,16 +13,20 @@ export class HeaderComponent implements OnInit, OnDestroy{
     private userSub:Subscription;
     isAuthenticated = false;
     categories:any = [];
+    user;
     constructor(private categoryService:CategoryService, private authService:AuthService, private router:Router){
 
     }
     ngOnInit():void{
 
-        this.categoryService.getCategories().subscribe(cat => {
+        this.categoryService.getCategoriesAndSub().subscribe(cat => {
             this.categories = cat;
         });
 
-        this.userSub = this.authService.user.subscribe(user => this.isAuthenticated = !!user);
+        this.userSub = this.authService.user.subscribe(user => {
+            this.user = user;
+            return this.isAuthenticated = !!user
+        });
     }
 
     logoutUser(){

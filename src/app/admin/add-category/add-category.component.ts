@@ -12,7 +12,7 @@ export class AddCategoryComponent implements OnInit {
   image:File;
   errorMessage = '';
   successMessage = '';
-  categories:[] = [];
+  categories = [];
   constructor(private categoryService:CategoryService) {
 
    }
@@ -26,12 +26,12 @@ export class AddCategoryComponent implements OnInit {
   onSubmit(form:NgForm){
     if(!form.valid) return;
 
-    const { categoryName, categoryDesc, parent} = form.value;
+    const { categoryName, categoryDesc, parentId} = form.value;
     
     const formData = new FormData();
     formData.set('categoryName',categoryName);
     formData.set('categoryDesc',categoryDesc);
-    formData.set('parent',parent);
+    formData.set('parentId',parentId);
     formData.set('image', this.image)
     console.log(formData.get('image'))
     this.categoryService.addCategory(formData).subscribe(() => {

@@ -1,0 +1,18 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Category Image</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Parent Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cat of categories">
+        <th scope="row">{{cat.id}}</th>
+        <td><img class="img-fluid" src="{{imageUrl}}/{{cat.image}}" alt=""></td>
+        <td>{{cat.categoryName}}</td>
+        <td>{{cat.parentId ? cat.parentId : 'Parent'}}</td>
+      </tr>
+    </tbody>
+  </table>

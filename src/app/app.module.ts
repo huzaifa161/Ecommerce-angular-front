@@ -21,6 +21,13 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+import { ProductsComponent } from './admin/products/products.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { AdminOrdersComponent } from './admin/orders/orders.component';
+import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
+import { AdminOrderDetailsComponent } from './admin/order-details/order-details.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,14 @@ import { AdminHeaderComponent } from './admin/admin-header/admin-header.componen
     AddProductComponent,
     AddCategoryComponent,
     AdminHomeComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    ProductsComponent,
+    CategoriesComponent,
+    AdminOrdersComponent,
+    AdminAuthComponent,
+    AdminOrderDetailsComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,

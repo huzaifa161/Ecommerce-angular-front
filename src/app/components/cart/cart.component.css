@@ -32,3 +32,8 @@
 	table#cart tfoot td .btn{display:block;}
 	
 }
+
+img{
+	width: 70px;
+	height: 70px;
+}
