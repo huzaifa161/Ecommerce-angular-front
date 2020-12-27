@@ -1,9 +1,12 @@
+import { Role } from './Role';
+
 export class User {
   constructor(
     public email: string,
     public id: number,
     private _token: string,
-    private _tokenExpirationDate: Date
+    private _tokenExpirationDate: Date,
+    public role:Role
   ) {}
 
   get token() {

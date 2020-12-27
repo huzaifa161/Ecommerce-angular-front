@@ -1,23 +1,60 @@
 <div class="form-wrapper">
-    <form class="form-med">
+    <form class="form-med" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
         <h2 class="form-heading">Sign In</h2>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+            <input
+              type="name" 
+              class="form-control" 
+              id="name" 
+              aria-describedby="nameHelp" 
+              placeholder="Enter name"
+              name="name"
+              ngModel
+              required 
+            >
           </div>
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            aria-describedby="emailHelp" 
+            placeholder="Enter email"
+            name="email"
+            email
+            required
+            ngModel  
+          >
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            placeholder="Password"
+            name="password"
+            required
+            ngModel
+          >
         </div>
         <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+            <input 
+              type="password" 
+              class="form-control" 
+              id="confirmPassword" 
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              required
+              ngModel
+            >
           </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Sign Up</button>
       </form>
 </div>
 
