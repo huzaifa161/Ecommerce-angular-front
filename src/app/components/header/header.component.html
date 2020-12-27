@@ -134,9 +134,12 @@
             <ul class="main-nav nav py-3">
                 <li class="active"><a href="#">Home</a></li>
                 <li *ngFor="let cat of categories"><a routerLink="categories/{{cat.id}}">{{cat.categoryName}}
-                    <li *ngFor="let c of cat.children"><a routerLink="categories/{{c.id}}">{{c.categoryName}}
+                    <ul>  
+                        <li *ngFor="let c of cat.children"><a routerLink="categories/{{c.id}}">{{c.categoryName}}
                     </a>
-                </li>                     
+                </li>   
+            </ul>
+                  
                 </a>
             </li>
             </ul>

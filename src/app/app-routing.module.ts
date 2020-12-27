@@ -20,6 +20,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductsByCategoriesComponent } from './components/products-by-categories/products-by-categories.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 
 const routes: Routes = [{
@@ -48,6 +49,8 @@ const routes: Routes = [{
     path:'orders', component:OrdersComponent
   },{
     path:'orders/:id', component: OrderDetailsComponent
+  },{
+    path:'products/:catid', component:ProductsByCategoriesComponent
   }]
 },
 {

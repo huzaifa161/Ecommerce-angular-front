@@ -30,6 +30,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { CustomersComponent } from './admin/customers/customers.component';
+import { ProductsByCategoriesComponent } from './components/products-by-categories/products-by-categories.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CustomersComponent } from './admin/customers/customers.component';
     OrdersComponent,
     OrderDetailsComponent,
     LandingComponent,
-    CustomersComponent
+    CustomersComponent,
+    ProductsByCategoriesComponent,
   ],
   imports: [
     CommonModule,
