@@ -17,6 +17,8 @@ export class AdminAuthComponent implements OnInit {
   onSubmit(form:NgForm){
     if(!form.valid) return;
     const {email, password} = form.value;
+    console.log(email, password)
+
     this.authService.loginAdmin(email, password).subscribe(res => {
       console.log(res)
       this.router.navigate(['/admin/products']);

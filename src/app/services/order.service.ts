@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
+import { Order } from "../models/order.model";
 
 @Injectable({
     providedIn:'root'
@@ -30,7 +31,7 @@ export class OrderService{
     }
 
     getOrderDetails(orderId){
-        return this.http.get(this.serverUrl + 'orders/'+ orderId,{
+        return this.http.get<Order>(this.serverUrl + 'orders/'+ orderId,{
             headers: new HttpHeaders().set('Authorization','Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluMTIzQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNjA4OTg2MTk1LCJleHAiOjE2MDkwNDYxOTV9.yUExMFHsg83c8dNXKGjTgWA6i6UpwxyIcRIEIpzCogc')
         });
     }
@@ -39,6 +40,10 @@ export class OrderService{
         return this.http.get<[]>(this.serverUrl + 'orders/all',{
             // headers: new HttpHeaders().set('Authorization','Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1emFpZmFqYW1lZWwyQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNjA4OTk2MzU0LCJleHAiOjE2MDkwNTYzNTR9.IzlrzrwPWSS3WaD-DzAithK50J4fRjb33kKxquuHR6E')
         });
+    }
+
+    updateOrderStatus(id, status){
+        return this.http.put(this.serverUrl + 'admin/orders/update-order-status/'+id,{status});
     }
 
 }

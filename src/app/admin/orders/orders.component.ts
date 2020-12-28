@@ -26,4 +26,12 @@ export class AdminOrdersComponent implements OnInit {
   getOrderDate(date){
     return new Date(Number(date)).toString()
   }
+  updateOrderStatus(orderId,status){
+    this.orderService.updateOrderStatus(orderId, status).subscribe(res => {
+      console.log('updated')
+    }, error => {
+      console.log('update failed')
+    })
+
+  }
 }

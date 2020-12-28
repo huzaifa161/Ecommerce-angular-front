@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
         this.categoryService.getCategoriesAndSub().subscribe(cat => {
             this.categories = cat;
+            console.log(this.categories)
         });
 
         this.userSub = this.authService.user.subscribe(user => {

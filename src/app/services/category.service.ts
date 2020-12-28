@@ -23,4 +23,10 @@ export class CategoryService{
            headers: new HttpHeaders().set('Authorization','Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluMTIzQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNjA4OTg2MTk1LCJleHAiOjE2MDkwNDYxOTV9.yUExMFHsg83c8dNXKGjTgWA6i6UpwxyIcRIEIpzCogc') 
         });
     }
+
+
+    getProductsByCategories(catId){
+        return this.http.get<[]>(this.serverUrl + 'category/' + catId);
+    }
+
 }

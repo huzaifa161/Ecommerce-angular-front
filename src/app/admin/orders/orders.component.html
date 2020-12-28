@@ -8,16 +8,31 @@
         <th scope="col">Items Count</th>
         <th scope="col">Price</th>
         <th scope="col">Details</th>
+        <th scope="col">Update</th>
+
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
         <th scope="row">{{order.id}}</th>
-        <td>{{order.order_status}}</td>
+        <td>
+          <!-- <select name="" id="" class="custom-select"> -->
+            {{order.order_status === 'pending' ? 'Pending' : 'Confirmed'}}
+
+            <!-- <option value="{{order.order_status === 'pending' ? 'confirm' : 'cancelled'}}">{{order.order_status === 'pending' ? 'Confirm' : 'Cancel'}}</option> -->
+          <!-- </select>   -->
+        </td>
         <td>{{getOrderDate(order.order_date) | date:'medium'}}</td>
         <td>{{order.product_count}}</td>
         <td>{{order.total_amount}}</td>
-        <td><a routerLink="/admin/orders/{{order.id}}" routerLinkActive="true" class="btn btn-primary">Details</a></td>
+        <td><a routerLink="/admin/orders/{{order.id}}" routerLinkActive="true" class="btn btn-info">Details</a></td>
+        <td>
+          <!-- <button (click)="" class="{{order.order_status === 'pending' ? 'btn btn-primary' : 'btn btn-alert'}}">
+          {{order.order_status === 'pending' ? 'Confirm' : 'Cancel'}}</button> -->
+
+          <button (click)="updateOrderStatus(order.id,'confirmed')" class="{{order.order_status === 'pending' ? 'show' : 'hidden'}}" class="btn btn-primary">Confirm</button>
+          <button (click)="updateOrderStatus(order.id,'cancelled')" class="{{order.order_status === 'confirmed' ? 'show' : 'hidden'}} btn btn-danger">Cancel</button>
+        </td>
       </tr>
     </tbody>
   </table>

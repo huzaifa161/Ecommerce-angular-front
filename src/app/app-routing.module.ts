@@ -22,6 +22,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsByCategoriesComponent } from './components/products-by-categories/products-by-categories.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
+import { Role } from './models/Role';
 
 const routes: Routes = [{
   path: '', component: LandingComponent,
@@ -46,11 +47,15 @@ const routes: Routes = [{
   },{
     path:'password-reset/:token', component:ResetPasswordComponent
   },{
-    path:'orders', component:OrdersComponent
+    path:'orders', component:OrdersComponent,
+    canActivate:[AuthGuard],
+    data:{roles:[Role.Customer], path:'customer'}
   },{
-    path:'orders/:id', component: OrderDetailsComponent
+    path:'orders/:id', component: OrderDetailsComponent,
+    canActivate:[AuthGuard],
+    data:{roles:[Role.Customer],path:'customer'}
   },{
-    path:'products/:catid', component:ProductsByCategoriesComponent
+    path:'categories/:id', component:ProductsByCategoriesComponent
   }]
 },
 {
@@ -79,11 +84,11 @@ const routes: Routes = [{
     data:{roles:['Admin'], path:'admin'}
   },{
     path:'orders', 
-    component:OrdersComponent,
+    component:AdminOrdersComponent,
     data:{roles:['Admin'], path:'admin'}
   },{
     path:'orders/:id', 
-    component:OrderDetailsComponent,
+    component:AdminOrderDetailsComponent,
     data:{roles:['Admin'], path:'admin'}    
   },{
     path:'customers', 

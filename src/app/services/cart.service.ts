@@ -11,7 +11,7 @@ import { Cart } from "../models/cart.model";
 })
 export class CartService{
 
-    baseUrl =environment.SERVER_URL;
+    serverUrl =environment.SERVER_URL;
     constructor(private http:HttpClient, private authService:AuthService){
 
     }
@@ -19,17 +19,22 @@ export class CartService{
 
 
     getCartItems(customerId:number):Observable<Cart>{
-            return this.http.get<Cart>(this.baseUrl + 'cart/' + customerId);
-        }
+            return this.http.get<Cart>(this.serverUrl + 'cart/' + customerId);
+    }
 
  
 
     addItemToCart(customerId:number, productId:number){
  
-        return this.http.post(this.baseUrl + 'cart',{customerId, productId});
+        return this.http.post(this.serverUrl + 'cart',{customerId, productId});
     }   
 
     clearCart(id:number){
-        return this.http.delete(this.baseUrl + 'cart/' + id)
+        return this.http.delete(this.serverUrl + 'cart/' + id)
+    }
+
+    updateCartItemCount(productToCartId, quantity){
+        return this.http.patch(this.serverUrl + 'cart/update-cart/'+productToCartId,{ quantity })
+
     }
 }

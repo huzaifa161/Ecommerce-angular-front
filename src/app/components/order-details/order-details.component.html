@@ -11,7 +11,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="let item of orderDetail.productToOrder">
+						<tr *ngFor="let item of orderDetail">
                             <td>{{item.productToOrderId}}</td>
 							<td data-th="Product">
 								<div class="row">
@@ -23,19 +23,13 @@
 								</div>
 							</td>
 							<td data-th="Price">{{item.product.price}}</td>
-							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="1">
-							</td>
+							<td data-th="Quantity">{{item.quantity}}</td>
 							<td data-th="Subtotal" class="text-center">{{item.total}}</td>
-							<!-- <td class="actions" data-th="">
-								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-								<button class="btn btn-danger btn-sm" (click)="removeCartItem(item.productToCartId)"><i class="fa fa-trash-o"></i></button>								
-							</td> -->
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr class="visible-xs">
-							<td class="text-center"><strong>Total {{orderDetail.total_amount}}</strong></td>
+							<td class="text-center"><strong>Total {{order?.total_amount}}</strong></td>
 						</tr>
 					</tfoot>
 				</table>

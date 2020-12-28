@@ -7,7 +7,8 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems:any;
+  cart;
+  cartItems = [];
   imageUrl = 'http://localhost:3000/';
 
   constructor(private cartService:CartService, private orderService: OrderService){
@@ -15,8 +16,11 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.cartService.getCartItems(1).subscribe(items => {
-      this.cartItems = items;
+    this.cartService.getCartItems(1).subscribe(cart => {
+      this.cart = cart;
+      this.cartItems = cart?.productToCart || [];
+      console.log(cart)
+
     });
 
   }
@@ -31,6 +35,18 @@ export class CartComponent implements OnInit {
     this.orderService.createOrder().subscribe(res => {
       console.log(res)
     })    
+  }
+
+  updateCartItem(cartItemId,quantity){
+    console.log(quantity)
+    if(quantity < 0) return;
+    this.cartService.updateCartItemCount(cartItemId, quantity).subscribe(res => {
+      console.log(res)
+    }, error => {
+      console.log(error)
+    })
+
+
   }
 
 }

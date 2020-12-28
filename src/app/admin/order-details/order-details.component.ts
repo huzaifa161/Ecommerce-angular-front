@@ -9,13 +9,14 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class AdminOrderDetailsComponent implements OnInit {
 
-  orderDetail;
+  orderDetail = null;
+  fetched:boolean = false;
   constructor(private route:ActivatedRoute, private orderService:OrderService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.orderService.getOrderDetails(id).subscribe(res => {
-      console.log(res)
+      this.fetched = true;
       this.orderDetail = res;
     }, error => {
       console.log(error)
