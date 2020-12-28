@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-auth',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminAuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+  onSubmit(form:NgForm){
+    if(!form.valid) return;
+    const {email, password} = form.value;
+    this.authService.loginAdmin(email, password).subscribe(res => {
+      console.log(res)
+      this.router.navigate(['/admin/products']);
+      form.reset();
+    }, error => {
+      console.log(error)
+    })      
   }
 
 }

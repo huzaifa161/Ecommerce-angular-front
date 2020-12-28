@@ -1,1 +1,31 @@
-<p>admin-auth works!</p>
+<div class="form-wrapper">
+  <form class="form-med" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <h2 class="form-heading">Sign In</h2>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          name="email" 
+          aria-describedby="emailHelp" 
+          placeholder="Enter email"
+          ngModel  
+          required
+          email
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          class="form-control" 
+          name="password" 
+          placeholder="Password"
+          ngModel
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Login</button>
+    </form>
+</div>
+

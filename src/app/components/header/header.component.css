@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 li  ul{
     display: none;
 }
@@ -8,4 +9,12 @@ li:hover ul{
     border: 2px solid black;
     display: block;
     position: absolute;
+=======
+li ul{
+  display: none;
+}
+
+li:hover ul{
+  display: block;
+>>>>>>> 36390f6dfdc23d272c70fc5a871e77e965297532
 }

@@ -24,12 +24,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
         });
 
         this.userSub = this.authService.user.subscribe(user => {
+            console.log(!!user && user.role ==='Customer')
             this.user = user;
-            return this.isAuthenticated = !!user
+            this.isAuthenticated = !!user && user.role ==='Customer';
         });
     }
 
-    logoutUser(){
+    logoutUser(e){
         this.authService.logout();
         this.router.navigate(['/']);
     }

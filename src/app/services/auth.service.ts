@@ -5,6 +5,7 @@ import { User } from '../models/user.model';;
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Role } from '../models/Role';
 
 
 export interface AuthResponseData {
@@ -12,6 +13,7 @@ export interface AuthResponseData {
     id: number;
     token: string;
     tokenExpirationDate: Date;
+    role:[string]
 }
 
 
@@ -25,19 +27,26 @@ export class AuthService{
     constructor(private http:HttpClient, private router:Router){ }
 
     signUp(name:string,email:string, password:string){
-        return this.http.post(this.serverUrl + 'auth/sign-up',{name, email, password});
+        return this.http.post(this.serverUrl + 'auth/sign-up-user',{name, email, password})
+        .pipe(catchError(this.handleError));
     }
 
     login(email:string, password:string){
         return this.http.post<AuthResponseData>(this.serverUrl + 'auth/login',{email, password})
         .pipe(tap(resData => {
-            this.handleAuthentication(resData.email,resData.id, resData.token, resData.tokenExpirationDate)
+            this.handleAuthentication(resData.email,resData.id, resData.token, resData.tokenExpirationDate, resData.role)
         }));
-
     }
 
-    private handleAuthentication( email: string, id: number, token: string, expirationDate: Date ) {
-        const user = new User(email, id, token, expirationDate);
+    loginAdmin(email, password){
+      return this.http.post<AuthResponseData>(this.serverUrl + 'admin/login', { email, password })
+      .pipe(tap(res => {
+        this.handleAuthentication(res.email, res.id,res.token, res.tokenExpirationDate, res.role)
+      }));
+    }
+
+    private handleAuthentication( email: string, id: number, token: string, expirationDate: Date, role ) {
+        const user = new User(email, id, token, expirationDate, role);
         this.user.next(user);
         localStorage.setItem('userData',JSON.stringify(user));
     }
@@ -49,6 +58,7 @@ export class AuthService{
           id: number;
           _token: string;
           _tokenExpirationDate: string;
+          role:Role;
         } = JSON.parse(localStorage.getItem('userData'));
 
         if (!userData) {
@@ -59,20 +69,19 @@ export class AuthService{
           userData.email,
           userData.id,
           userData._token,
-          new Date(userData._tokenExpirationDate)
+          new Date(userData._tokenExpirationDate),
+          userData.role
         );
     
         if (loadedUser.token) {
           this.user.next(loadedUser);
           const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-          console.log('expiration Duration',new Date(userData._tokenExpirationDate).getTime())
-
           this.autoLogout(expirationDuration);
         }
       }
     logout(){
         this.user.next(null);
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/']);
         localStorage.removeItem('userData');
         if (this.tokenExpirationTimer) {
           clearTimeout(this.tokenExpirationTimer);
@@ -108,6 +117,9 @@ export class AuthService{
       }
 
       switch (errorRes.error.message) {
+        case 'EMAIL_EXISTS':
+          errorMessage = 'Email already exists';
+          break;
         case 'EMAIL_NOT_EXISTS':
           errorMessage = 'Email not Exists';
           break;
@@ -122,6 +134,11 @@ export class AuthService{
           break;
       }
       return throwError(errorMessage);
+    }
+
+
+    getCustomers(){
+      return this.http.get<[]>(this.serverUrl + 'admin/customers');
     }
 
   }

@@ -28,6 +28,9 @@ import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminOrderDetailsComponent } from './admin/order-details/order-details.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { ProductsByCategoriesComponent } from './components/products-by-categories/products-by-categories.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     AdminAuthComponent,
     AdminOrderDetailsComponent,
     OrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    LandingComponent,
+    CustomersComponent,
+    ProductsByCategoriesComponent,
   ],
   imports: [
     CommonModule,
