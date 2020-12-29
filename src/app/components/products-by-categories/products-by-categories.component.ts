@@ -15,14 +15,17 @@ export class ProductsByCategoriesComponent implements OnInit, OnDestroy {
   imageUrl = 'http://localhost:3000/';
   id;
   sub:Subscription;
-catSubs:Subscription;
+  catSubs:Subscription;
+  prev:true;
   constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
+    this.sub = this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+  });
 
-   }
+  }
 
 
   ngOnInit(): void {
-    console.log('ini')
    this.sub = this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       this.categoryService.getProductsByCategories(params.get('id')).subscribe(products => {
@@ -39,6 +42,7 @@ catSubs:Subscription;
   ngOnDestroy(){
     this.sub.unsubscribe();
   }
+
 
 
 }

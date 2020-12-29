@@ -16,37 +16,24 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.cartService.getCartItems(1).subscribe(cart => {
+    this.cartService.cart.subscribe(cart => {
       this.cart = cart;
       this.cartItems = cart?.productToCart || [];
-      console.log(cart)
-
     });
 
   }
 
   removeCartItem(id:number){
-    this.cartService.clearCart(id).subscribe(res => {
-      console.log(res)
-    });
+    this.cartService.clearCart(id);
   }
 
   confirmOrder(){
-    this.orderService.createOrder().subscribe(res => {
-      console.log(res)
-    })    
+    this.orderService.createOrder().subscribe(res => {})    
   }
 
   updateCartItem(cartItemId,quantity){
-    console.log(quantity)
     if(quantity < 0) return;
-    this.cartService.updateCartItemCount(cartItemId, quantity).subscribe(res => {
-      console.log(res)
-    }, error => {
-      console.log(error)
-    })
-
-
+    this.cartService.updateCartItemCount(cartItemId, quantity);
   }
 
 }

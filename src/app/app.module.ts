@@ -65,8 +65,7 @@ import { ProductsByCategoriesComponent } from './components/products-by-categori
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

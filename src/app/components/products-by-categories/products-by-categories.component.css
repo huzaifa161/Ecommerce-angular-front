@@ -1,0 +1,19 @@
+.custom-card{
+    margin: 12px;
+    padding: 8px;
+    box-shadow: 0 0 2px rgba(0,0,0,.25);
+}
+.custom-card-title{
+    min-height: 80px;
+}
+.custom-card img {
+    height: 200px;
+}
+.category-section{
+    overflow: hidden;
+    margin-top: 36px;
+}
+
+.category-section > h3{
+    margin-bottom: 20px;
+} 

@@ -29,4 +29,8 @@ export class CategoryService{
         return this.http.get<[]>(this.serverUrl + 'category/' + catId);
     }
 
+    getCategoriesAndProducts(){
+        return this.http.get<[]>(this.serverUrl + 'category/products');
+    }
+
 }
