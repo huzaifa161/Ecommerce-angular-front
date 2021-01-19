@@ -4,6 +4,7 @@ import {Product} from "./product.model";
 export interface Cart {
     id:number;
     total: Number;
+    quantity:number;
     productToCart: [{
         productId: Number,
         cartId: Number,

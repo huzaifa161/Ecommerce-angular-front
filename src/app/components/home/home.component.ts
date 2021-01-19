@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from '../../models/product.model';
 
@@ -10,16 +11,19 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
 
-  products:Product[] =[];
+  categories = [];
 
   imageUrl = 'http://localhost:3000/';
   
-  constructor(private productService:ProductService, private router:Router, private cartService:CartService) { }
+  constructor(private productService:ProductService,private categoryService:CategoryService ,private router:Router, private cartService:CartService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((prod:Product[]) => {
-      this.products = prod;
+    this.categoryService.getCategoriesAndProducts().subscribe(res => {
+      this.categories = res;
+    }, error => {
+      console.log(error)
     })
   }
   selectProduct(id: Number) {
@@ -27,9 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   addItemToCart(productId:number){
-    this.cartService.addItemToCart(1,productId).subscribe(res => {
-      console.log(res)
-    })
+    this.cartService.addItemToCart(productId);
 
   }
 
