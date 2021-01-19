@@ -77,7 +77,15 @@
 
 
 					<!-- CAROUSEL START -->
-					
+					<!-- Top content -->
+					<div class="owl-carousel owl-theme">
+							<div *ngFor="let prod of products" class="col-md-4">
+									<div class="">
+										{{prod.id}}
+											<img class="img-fluid" src="http://placehold.it/380?text=1">
+									</div>
+							</div>
+					</div>				
 					<!-- CAROUSEL END -->
 
 					<div class="col-md-12">
